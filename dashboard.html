@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - WorldHeritage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="projet.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- jQuery + Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js pour les visualisations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Scripts personnalisés -->
+    <script src="projet.js"></script>
+    
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-heritage fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="projet.html">
+                <span class="brand-icon">🏛️</span>
+                <strong>WorldHeritage</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="projet.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explorer.html">Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="heritage.html">Patrimoine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">Statistiques</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- En-tête de page -->
+    <header class="py-5 mt-5 bg-light-culture">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-5 fw-bold mb-3">Tableau de Bord Statistique</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section principale -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Statistiques principales -->
+            <div class="row mb-5" id="dashboard-stats">
+                <div class="col-12 text-center py-5">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-3">Chargement des statistiques mondiales...</p>
+                </div>
+            </div>
+
+            <!-- Graphiques -->
+            <div class="row mb-5">
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">📈 Répartition des pays par région</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <canvas id="regionChart" width="400" height="300" style="max-width: 100%;"></canvas>
+                            </div>
+                            <div class="mt-3">
+                                <small class="text-muted">Nombre de pays par région géographique</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">📊 Top 10 des pays par population</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <canvas id="populationChart" width="400" height="300" style="max-width: 100%;"></canvas>
+                            </div>
+                            <div class="mt-3">
+                                <small class="text-muted">Population en millions d'habitants</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tableaux de données -->
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">🌍 Répartition par région</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-heritage">
+                                    <thead>
+                                        <tr>
+                                            <th>Région</th>
+                                            <th>Nombre de pays</th>
+                                            <th>Pourcentage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="regions-distribution">
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <div class="spinner-border spinner-border-sm text-heritage me-2"></div>
+                                                Chargement des données...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">👥 Top 10 - Population</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-heritage">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Pays</th>
+                                            <th>Population</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="top-countries-table">
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <div class="spinner-border spinner-border-sm text-heritage me-2"></div>
+                                                Chargement des données...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistiques détaillées -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">📋 Statistiques détaillées</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="detailed-stats">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card stats-card-sm">
+                                        <div class="card-body text-center">
+                                            <div class="stats-icon-sm">🌐</div>
+                                            <h4 id="total-countries-dash">...</h4>
+                                            <p class="text-muted mb-0">Pays au total</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card stats-card-sm">
+                                        <div class="card-body text-center">
+                                            <div class="stats-icon-sm">👥</div>
+                                            <h4 id="total-population-dash">...</h4>
+                                            <p class="text-muted mb-0">Population mondiale</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card stats-card-sm">
+                                        <div class="card-body text-center">
+                                            <div class="stats-icon-sm">🗣️</div>
+                                            <h4 id="total-languages-dash">...</h4>
+                                            <p class="text-muted mb-0">Langues différentes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card stats-card-sm">
+                                        <div class="card-body text-center">
+                                            <div class="stats-icon-sm">📍</div>
+                                            <h4 id="largest-region">...</h4>
+                                            <p class="text-muted mb-0">Région avec le plus de pays</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card stats-card-sm">
+                                        <div class="card-body text-center">
+                                            <div class="stats-icon-sm">🔄</div>
+                                            <h4 id="update-time">Maintenant</h4>
+                                            <p class="text-muted mb-0">Dernière mise à jour</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations sur l'API -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">ℹ️ À propos des données</h5>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-footer-culture text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3"><span class="brand-icon">🏛️</span> WorldHeritage</h4>
+                    <p>Explorez la richesse culturelle mondiale à travers les données des pays.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="projet.html" class="text-footer-link">Accueil</a></li>
+                        <li class="mb-2"><a href="explorer.html" class="text-footer-link">Explorer</a></li>
+                        <li class="mb-2"><a href="heritage.html" class="text-footer-link">Patrimoine</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3">Ressources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="dashboard.html" class="text-footer-link">Statistiques</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-footer-link">Contact</a></li>
+                       
+                    </ul>
+                </div>
+               
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">© 2023 WorldHeritage - Projet éducatif</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+  
+  
+</body>
+</html>

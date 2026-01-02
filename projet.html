@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldHeritage - Patrimoine Mondial</title>
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="projet.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="projet.js"></script>
+    
+    
+  
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-heritage fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="projet.html">
+                <span class="brand-icon">🏛️</span>
+                <strong>WorldHeritage</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projet.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explorer.html">Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="heritage.html">Patrimoine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Statistiques</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-80">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Découvrez le patrimoine culturel mondial</h1>
+                    <p class="lead mb-4">Explorez la richesse culturelle des pays à travers leurs traditions, langues, monuments et héritage historique.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="explorer.html" class="btn btn-heritage btn-lg px-4">
+                            <span class="me-2">🌍</span>Explorer les pays
+                        </a>
+                        <a href="heritage.html" class="btn btn-outline-heritage btn-lg px-4">
+                            <span class="me-2">🏺</span>Découvrir le patrimoine
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="world-heritage-illustration">
+                        <div class="heritage-icon" style="top: 20%; left: 10%;">🗿</div>
+                        <div class="heritage-icon" style="top: 10%; right: 15%;">🏰</div>
+                        <div class="heritage-icon" style="bottom: 25%; left: 20%;">🎭</div>
+                        <div class="heritage-icon" style="bottom: 15%; right: 10%;">📜</div>
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Patrimoine mondial" class="img-fluid rounded shadow-lg heritage-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section class="py-5 bg-light-culture">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="section-title-culture">Explorez la diversité culturelle</h2>
+                    
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card culture-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="culture-icon mb-3">📊</div>
+                            <h4 class="card-title">Données en temps réel</h4>
+                            <p class="card-text">Accédez aux informations actualisées sur 250+ pays : population, langues, monnaies, régions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card culture-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="culture-icon mb-3">🎨</div>
+                            <h4 class="card-title">Patrimoine culturel</h4>
+                            <p class="card-text">Découvrez les traditions, les monuments historiques et l'héritage culturel de chaque nation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card culture-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="culture-icon mb-3">🗺️</div>
+                            <h4 class="card-title">Visualisations interactives</h4>
+                            <p class="card-text">Explorez les données à travers des graphiques et cartes interactives générés dynamiquement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- Aperçu des pays -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col">
+                    <h2 class="section-title-culture">Pays à découvrir</h2>
+                    <p class="text-muted-culture">Quelques pays sélectionnés avec leur patrimoine culturel</p>
+                </div>
+            </div>
+            
+            <div class="row g-4" id="countries-preview">
+                
+                <div class="col-md-4">
+                    <div class="card country-card">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">Chargement...</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card country-card">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">Chargement...</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card country-card">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">Chargement...</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-7"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-4"></span>
+                                <span class="placeholder col-6"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <a href="explorer.html" class="btn btn-heritage btn-lg">
+                        <span class="me-2">🔍</span>Explorer tous les pays
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-dark-culture text-white">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="section-title-light">Notre monde en chiffres</h2>
+                    <p class="text-light">Quelques statistiques sur la diversité culturelle mondiale</p>
+                </div>
+            </div>
+            
+            <div class="row g-4" id="world-stats">
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3">
+                        <div class="stats-number" id="total-countries">250+</div>
+                        <p class="mb-0">Pays indépendants</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3">
+                        <div class="stats-number" id="total-languages">7,000+</div>
+                        <p class="mb-0">Langues parlées</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3">
+                        <div class="stats-number" id="total-population">8.0 Md</div>
+                        <p class="mb-0">Population mondiale</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="text-center p-3">
+                        <div class="stats-number" id="total-regions">6</div>
+                        <p class="mb-0">Continents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-footer-culture text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3"><span class="brand-icon">🏛️</span> WorldHeritage</h4>
+                    <p>Explorez la richesse culturelle mondiale à travers les données des pays. Un projet éducatif dédié à la diversité culturelle.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="projet.html" class="text-footer-link">Accueil</a></li>
+                        <li class="mb-2"><a href="explorer.html" class="text-footer-link">Explorer</a></li>
+                        <li class="mb-2"><a href="heritage.html" class="text-footer-link">Patrimoine</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3">Ressources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="dashboard.html" class="text-footer-link">Statistiques</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-footer-link">Contact</a></li>
+                       
+                    </ul>
+                </div>
+                
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">© 2023 WorldHeritage - Projet éducatif</p>
+                </div>
+               
+            </div>
+        </div>
+    </footer>
+
+   
+    
+    
+    
+    
+   
+</body>
+</html>

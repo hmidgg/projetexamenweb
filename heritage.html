@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrimoine Culturel - WorldHeritage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="projet.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+     
+    <!-- jQuery + Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <!-- Scripts personnalisés -->
+   
+    <script src="projet.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-heritage fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="projet.html">
+                <span class="brand-icon">🏛️</span>
+                <strong>WorldHeritage</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="projet.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explorer.html">Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="heritage.html">Patrimoine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Statistiques</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- En-tête de page -->
+    <header class="py-5 mt-5 bg-light-culture">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-5 fw-bold mb-3">Patrimoine Culturel Mondial</h1>
+                    <p class="lead mb-4">Découvrez la richesse culturelle à travers les monuments, traditions et arts des pays du monde.</p>
+                    
+                    <!-- Filtres par type de patrimoine -->
+                    <div class="mt-4">
+                        <h6 class="mb-3">Explorer par type :</h6>
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-heritage heritage-filter" data-type="monument">
+                                🏛️ Monuments
+                            </button>
+                            <button class="btn btn-sm btn-outline-heritage heritage-filter" data-type="tradition">
+                                🎭 Traditions
+                            </button>
+                            <button class="btn btn-sm btn-outline-heritage heritage-filter" data-type="art">
+                                🎨 Arts
+                            </button>
+                            <button class="btn btn-sm btn-outline-heritage heritage-filter" data-type="language">
+                                🗣️ Langues
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="filterHeritage('all')">
+                                Tout voir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section du patrimoine culturel -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Introduction -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Qu'est-ce que le patrimoine culturel ?</h4>
+                            <p class="card-text">
+                                Le patrimoine culturel englobe les monuments, les traditions, les arts, les langues et toutes 
+                                les expressions culturelles qui définissent l'identité d'un peuple. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cartes du patrimoine -->
+            <div class="row" id="heritage-container">
+                <!-- Le patrimoine sera chargé ici via JavaScript -->
+                <div class="col-12 text-center py-5">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-3">Chargement du patrimoine culturel...</p>
+                </div>
+            </div>
+
+            <!-- Statistiques du patrimoine -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">📊 Statistiques du patrimoine mondial</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="heritage-stats-number">250+</div>
+                                    <p class="text-muted mb-0">Pays avec patrimoine unique</p>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="heritage-stats-number">7,000+</div>
+                                    <p class="text-muted mb-0">Langues vivantes</p>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="heritage-stats-number">1,154</div>
+                                    <p class="text-muted mb-0">Sites UNESCO</p>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="heritage-stats-number">500+</div>
+                                    <p class="text-muted mb-0">Traditions uniques</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section des régions -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="section-title-culture mb-4">Patrimoine par région</h3>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card region-card">
+                        <div class="card-body">
+                            <h5 class="card-title">🏰 Europe</h5>
+                            <p class="card-text">
+                                Châteaux, cathédrales gothiques, places historiques, musées d'art classique, 
+                                opéras et festivals de musique.
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>✓ Architecture gothique et baroque</li>
+                                <li>✓ Peinture à l'huile classique</li>
+                                <li>✓ Carnavals traditionnels</li>
+                                <li>✓ Marchés de Noël</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card region-card">
+                        <div class="card-body">
+                            <h5 class="card-title">⛩️ Asie</h5>
+                            <p class="card-text">
+                                Temples anciens, palais impériaux, jardins zen, arts martiaux, calligraphie 
+                                et céramique traditionnelle.
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>✓ Architecture de temples</li>
+                                <li>✓ Arts martiaux traditionnels</li>
+                                <li>✓ Cérémonie du thé</li>
+                                <li>✓ Festival des lanternes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card region-card">
+                        <div class="card-body">
+                            <h5 class="card-title">🗿 Afrique</h5>
+                            <p class="card-text">
+                                Pyramides, sites rupestres, villages traditionnels, masques rituels, 
+                                danses tribales et musique percussion.
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>✓ Sculpture sur bois</li>
+                                <li>✓ Rites de passage</li>
+                                <li>✓ Conte oral traditionnel</li>
+                                <li>✓ Textiles ethniques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card region-card">
+                        <div class="card-body">
+                            <h5 class="card-title">🌄 Amériques</h5>
+                            <p class="card-text">
+                                Sites mayas et incas, villes coloniales, festivals de rue, danse latine, 
+                                jazz et muralisme.
+                            </p>
+                            <ul class="list-unstyled">
+                                <li>✓ Architecture coloniale</li>
+                                <li>✓ Carnavals colorés</li>
+                                <li>✓ Cuisine de rue</li>
+                                <li>✓ Musique jazz et latine</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-footer-culture text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3"><span class="brand-icon">🏛️</span> WorldHeritage</h4>
+                    <p>Explorez la richesse culturelle mondiale à travers les données des pays.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="projet.html" class="text-footer-link">Accueil</a></li>
+                        <li class="mb-2"><a href="explorer.html" class="text-footer-link">Explorer</a></li>
+                        <li class="mb-2"><a href="heritage.html" class="text-footer-link">Patrimoine</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3">Ressources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="dashboard.html" class="text-footer-link">Statistiques</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-footer-link">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">© 2023 WorldHeritage </p>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

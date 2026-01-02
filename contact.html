@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - WorldHeritage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="projet.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+    <!-- Scripts personnalisés -->
+    <script src="projet.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-heritage fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="projet.html">
+                <span class="brand-icon">🏛️</span>
+                <strong>WorldHeritage</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="projet.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explorer.html">Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="heritage.html">Patrimoine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Statistiques</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- En-tête de page -->
+    <header class="py-5 mt-5 bg-light-culture">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-5 fw-bold mb-3">Contactez-nous</h1>
+                    <p class="lead mb-4">
+                        Vous avez des questions sur notre projet ou souhaitez en savoir plus sur le patrimoine culturel mondial ? 
+                        N'hésitez pas à nous contacter via le formulaire ci-dessous.
+                    </p>
+                
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section contact principale -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Formulaire de contact -->
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow-sm mb-5">
+                        <div class="card-header bg-heritage text-white">
+                            <h5 class="mb-0">
+                                <span class="me-2">📝</span>
+                                Formulaire de contact
+                            </h5>
+                        </div>
+                        <div class="card-body p-4 p-md-5">
+                            <!-- Message de succès (caché par défaut) -->
+                            <div id="success-message" class="d-none"></div>
+                            
+                            <!-- Formulaire -->
+                            <form id="contact-form" novalidate>
+                                <div class="row">
+                                    <!-- Nom -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contact-name" class="form-label fw-medium">
+                                            <span class="text-danger">*</span> Nom complet
+                                        </label>
+                                        <input type="text" class="form-control" id="contact-name" 
+                                               placeholder="Votre nom et prénom" required
+                                               aria-describedby="name-help">
+                                        <div class="invalid-feedback error-message" id="name-error">
+                                            Veuillez entrer votre nom complet (minimum 2 caractères)
+                                        </div>
+                                        <div id="name-help" class="form-text">
+                                            Minimum 2 caractères
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Email -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="contact-email" class="form-label fw-medium">
+                                            <span class="text-danger">*</span> Adresse email
+                                        </label>
+                                        <input type="email" class="form-control" id="contact-email" 
+                                               placeholder="exemple@email.com" required
+                                               aria-describedby="email-help">
+                                        <div class="invalid-feedback error-message" id="email-error">
+                                            Veuillez entrer une adresse email valide
+                                        </div>
+                                        <div id="email-help" class="form-text">
+                                            Nous ne partagerons jamais votre email
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sujet -->
+                                <div class="mb-3">
+                                    <label for="contact-subject" class="form-label fw-medium">
+                                        <span class="text-danger">*</span> Sujet du message
+                                    </label>
+                                    <input type="text" class="form-control" id="contact-subject" 
+                                           placeholder="Objet de votre message" required
+                                           aria-describedby="subject-help">
+                                    <div class="invalid-feedback error-message" id="subject-error">
+                                        Veuillez entrer un sujet (minimum 5 caractères)
+                                    </div>
+                                    <div id="subject-help" class="form-text">
+                                        Décrivez brièvement l'objet de votre message
+                                    </div>
+                                </div>
+                                
+                                <!-- Catégorie -->
+                                <div class="mb-3">
+                                    <label for="contact-category" class="form-label fw-medium">
+                                        <span class="text-danger">*</span> Catégorie de demande
+                                    </label>
+                                    <select class="form-select" id="contact-category" required>
+                                        <option value="">Sélectionnez une catégorie</option>
+                                        <option value="question">Question sur les données</option>
+                                        <option value="bug">Signalement de problème</option>
+                                        <option value="suggestion">Suggestion d'amélioration</option>
+                                        <option value="collaboration">Proposition de collaboration</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+                                    <div class="invalid-feedback error-message" id="category-error">
+                                        Veuillez sélectionner une catégorie
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <!-- Message -->
+                                <div class="mb-3">
+                                    <label for="contact-message" class="form-label fw-medium">
+                                        <span class="text-danger">*</span> Votre message
+                                    </label>
+                                    <textarea class="form-control" id="contact-message" rows="5" 
+                                              placeholder="Décrivez votre demande en détail..." required
+                                              aria-describedby="message-help"></textarea>
+                                    <div class="invalid-feedback error-message" id="message-error">
+                                        Veuillez entrer un message (minimum 10 caractères)
+                                    </div>
+                                    <div id="message-help" class="form-text">
+                                        Soyez aussi précis que possible pour une meilleure réponse
+                                    </div>
+                                </div>
+                                
+                                <!-- Newsletter -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="contact-newsletter">
+                                        <label class="form-check-label" for="contact-newsletter">
+                                            Je souhaite recevoir les actualités sur le patrimoine culturel mondial
+                                        </label>
+                                    </div>
+                                    <div class="form-text">
+                                        Environ 1 email par mois, désinscription à tout moment
+                                    </div>
+                                </div>
+                                
+                                <!-- Boutons -->
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="reset" class="btn btn-outline-secondary me-md-2" id="reset-button" onclick="resetContactForm()">
+                                        <span class="me-1">🗑️</span> Effacer le formulaire
+                                    </button>
+                                    <button type="submit" class="btn btn-heritage px-4" id="submit-button">
+                                        <span class="me-1">📨</span> Envoyer le message
+                                    </button>
+                                </div>
+                                
+                                <!-- Mention obligatoire -->
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <span class="text-danger">*</span> Champs obligatoires
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                        
+                  
+                </div>
+            </div>
+            
+            <!-- Section informations de contact -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-dark-culture text-white">
+                            <h5 class="mb-0">
+                                <span class="me-2">📞</span>
+                                Autres moyens de nous contacter
+                                94157396
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="contact-method p-3">
+                                        <div class="contact-icon mb-3">📧</div>
+                                        <h6>Email académique</h6>
+                                        <p class="text-muted mb-0"> hmidguezguez@gmail.com</p>
+                                        <small class="text-muted">Réponse sous 48h</small>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-md-4 mb-3">
+                                    <div class="contact-method p-3">
+                                        <div class="contact-icon mb-3">📚</div>
+                                        <h6>Projet éducatif</h6>
+                                        <p class="text-muted mb-0">Code source disponible</p>
+                                        <small class="text-muted">Démonstration pédagogique</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ -->
+            
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-footer-culture text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3">
+                        <span class="brand-icon">🏛️</span> WorldHeritage
+                    </h4>
+                    <p>Explorez la richesse culturelle mondiale à travers les données des pays. Un projet éducatif dédié à la diversité culturelle.</p>
+                    <div class="mt-3">
+                    
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="projet.html" class="text-footer-link">Accueil</a></li>
+                        <li class="mb-2"><a href="explorer.html" class="text-footer-link">Explorer</a></li>
+                        <li class="mb-2"><a href="heritage.html" class="text-footer-link">Patrimoine</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3">Ressources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="dashboard.html" class="text-footer-link">Statistiques</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-footer-link">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            <hr class="bg-light my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">© 2023 WorldHeritage - Projet éducatif démonstratif</p>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+    
+    
+</body>
+</html>

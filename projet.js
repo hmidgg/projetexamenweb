@@ -244,7 +244,7 @@ function filterHeritage(type) {
     });
 }
 
-// ============================================ // INITIALISATION JQUERY // ============================================
+// =====!======================================= // INITIALISATION JQUERY // ============================================
 $(document).ready(function () {
     const page = window.location.pathname.split('/').pop();
 
@@ -261,6 +261,9 @@ $(document).ready(function () {
 
     // CONTACT
     if (page === 'contact.html') $('#contact-form').on('submit', validateContactForm);
+    if (page === 'dashboard.html') {
+        loadDashboard();
+}
 
     // PATRIMOINE
     if (page === 'heritage.html') {
@@ -270,6 +273,7 @@ $(document).ready(function () {
         });
     
 }
+       
     
 
         // Bouton "Tout voir"
@@ -312,7 +316,7 @@ function resetContactForm() {
     document.getElementById('contact-form').style.display = 'block';
 }
 
-// Validation email SIMPLE (sans regex)
+
 function isValidEmailSimple(email) {
     email = email.trim();
 
@@ -403,5 +407,154 @@ document.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', validateContactForm);
     }
 });
+const page = window.location.pathname.split('/').pop();
 
+/* ================================
+   Initialisation
+================================ */
+$(document).ready(function () {
+    if (page === "dashboard.html") {
+        loadDashboard();
+    }
+});
 
+/* ================================
+   Chargement principal
+================================ */
+function loadDashboard() {
+    $.getJSON(RESTCOUNTRIES_ALL)
+        .done(data => {
+            renderDashboardStats(data);
+            renderRegionTable(data);
+            renderTopPopulationTable(data);
+            renderCharts(data);
+        })
+        .fail(() => {
+            $("#dashboard-stats").html(
+                '<p class="text-danger text-center">Erreur de chargement des données</p>'
+            );
+        });
+}
+
+/* ================================
+   Statistiques globales
+================================ */
+function renderDashboardStats(data) {
+
+    // Supprimer le loader
+    $("#dashboard-stats").remove();
+
+    const totalCountries = data.length;
+
+    const totalPopulation = data.reduce(
+        (sum, c) => sum + (c.population || 0),
+        0
+    );
+
+    const totalLanguages = new Set(
+        data.flatMap(c =>
+            c.languages ? Object.values(c.languages) : []
+        )
+    ).size;
+
+    $("#total-countries-dash").text(totalCountries);
+    $("#total-population-dash").text(
+        (totalPopulation / 1e9).toFixed(2) + " Md"
+    );
+    $("#total-languages-dash").text(totalLanguages);
+}
+
+/* ================================
+   Tableau des régions
+================================ */
+function renderRegionTable(data) {
+
+    const regions = {};
+    data.forEach(c => {
+        if (c.region) {
+            regions[c.region] = (regions[c.region] || 0) + 1;
+        }
+    });
+
+    const total = data.length;
+    const tbody = $("#regions-distribution").empty();
+
+    Object.entries(regions).forEach(([region, count]) => {
+        tbody.append(`
+            <tr>
+                <td>${region}</td>
+                <td>${count}</td>
+                <td>${((count / total) * 100).toFixed(1)}%</td>
+            </tr>
+        `);
+    });
+}
+
+/* ================================
+   Top 10 pays par population
+================================ */
+function renderTopPopulationTable(data) {
+
+    const top10 = [...data]
+        .sort((a, b) => b.population - a.population)
+        .slice(0, 10);
+
+    const tbody = $("#top-countries-table").empty();
+
+    top10.forEach((c, i) => {
+        tbody.append(`
+            <tr>
+                <td>${i + 1}</td>
+                <td>${c.name.common}</td>
+                <td>${c.population.toLocaleString()}</td>
+            </tr>
+        `);
+    });
+}
+
+/* ================================
+   Graphiques Chart.js
+================================ */
+function renderCharts(data) {
+
+    /* --- Graphique régions --- */
+    const regions = {};
+    data.forEach(c => {
+        if (c.region) {
+            regions[c.region] = (regions[c.region] || 0) + 1;
+        }
+    });
+
+    const regionCtx = document
+        .getElementById("regionChart")
+        .getContext("2d");
+
+    new Chart(regionCtx, {
+        type: "pie",
+        data: {
+            labels: Object.keys(regions),
+            datasets: [{
+                data: Object.values(regions)
+            }]
+        }
+    });
+
+    /* --- Graphique population --- */
+    const top10 = [...data]
+        .sort((a, b) => b.population - a.population)
+        .slice(0, 10);
+
+    const popCtx = document
+        .getElementById("populationChart")
+        .getContext("2d");
+
+    new Chart(popCtx, {
+        type: "bar",
+        data: {
+            labels: top10.map(c => c.name.common),
+            datasets: [{
+                data: top10.map(c => c.population)
+            }]
+        }
+    });
+}

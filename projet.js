@@ -249,7 +249,7 @@ $(document).ready(function () {
     const page = window.location.pathname.split('/').pop();
 
     // PAYS
-    if (page === 'projet.html' || page === '') loadRandomCountries(3);
+    if (page === 'index.html' || page === '') loadRandomCountries(3);
     if (page === 'explorer.html') {
         loadAllCountries();
         $('.region-filter').on('click', function () { filterByRegion($(this).data('region')); });
